@@ -26,8 +26,8 @@
 						<p>Enter a number and get a random fact</p>
 						<input
 							type="number"
-							class="form-control form-control-lg id="
-							numberInput
+							class="form-control form-control-lg"
+							id="numberInput"
 							placeholder="Enter any number..."
 						/>
 						<div id="fact" class="card-body">
@@ -47,7 +47,18 @@
 			numberInput.addEventListener("input", getFactAjax);
 
 			function getFactAjax() {
-				console.log(123);
+				let number = numberInput.value;
+
+				let xhr = new XMLHttpRequest();
+				xhr.open("GET", "http://numbersapi.com/" + number);
+
+				xhr.onload = function () {
+					if (this.status == 200) {
+						console.log(this.responseText);
+					}
+				};
+
+				xhr.send();
 			}
 		</script>
 	</body>
